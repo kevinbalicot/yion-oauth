@@ -4,7 +4,7 @@ module.exports = (uri, method = 'GET') => {
 
     return {
         type: 'security',
-        handle: (req, res, app) => {
+        handle: (req, res, app, next) => {
             req.isAuthenticated = (accessToken = null) => {
                 return new Promise((resolve, reject) => {
                     if (!accessToken && !req.headers['authorization']) {
@@ -37,6 +37,8 @@ module.exports = (uri, method = 'GET') => {
                     );
                 });
             };
+
+            next();
         }
     };
 };
