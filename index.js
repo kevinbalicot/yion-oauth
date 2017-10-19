@@ -17,6 +17,7 @@ module.exports = (uri, method = 'GET') => {
                         {
                             method,
                             uri,
+                            rejectUnauthorized: false,
                             headers: { Authorization: accessToken || req.headers['authorization'] }
                         },
                         (error, response, body) => {
